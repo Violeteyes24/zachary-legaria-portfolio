@@ -315,8 +315,8 @@ export const projects: Project[] = [
       "Building for myself sharpened my taste. Every extra click had to justify its own existence.",
   },
   {
-    slug: "cdai",
-    name: "CDAI",
+    slug: "apnea-consultant",
+    name: "Apnea Dynamics Consultant",
     category: "Data · Analytics",
     year: "2026",
     role: "Full-stack developer",
@@ -325,7 +325,7 @@ export const projects: Project[] = [
       "A lead-attribution and analytics dashboard for Apnea Dynamics that shows where leads come from and how they convert.",
     tech: ["Next.js", "Vercel", "Node 24.x", "CI/CD"],
     overview:
-      "CDAI gives the team one place to understand lead sources and conversion, replacing scattered spreadsheets with a live dashboard deployed continuously on Vercel.",
+      "Apnea Dynamics Consultant gives the team one place to understand lead sources and conversion, replacing scattered spreadsheets with a live dashboard deployed continuously on Vercel.",
     problem:
       "Marketing effort was hard to attribute. The team lacked a single, trustworthy view of where leads came from and what happened to them.",
     responsibilities: [
