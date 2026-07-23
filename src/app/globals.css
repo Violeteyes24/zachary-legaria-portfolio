@@ -1,26 +1,305 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   Theme tokens: "Nocturne" palette from the Claude Design source.
+   Dark is the default; [data-theme="light"] overrides. All colors are driven
+   by these CSS variables so the theme toggle is a single attribute flip.
+   ========================================================================== */
+:root,
+[data-theme="dark"] {
+  --bg: #161826;
+  --surface: #1c1e2c;
+  --surface-2: #232532;
+  --ink: #e9e9ed;
+  --ink-2: #cfd3e5;
+  --ink-3: #9397ab;
+  --border: #3f424d;
+  --border-soft: rgba(233, 233, 237, 0.12);
+  --accent: #9184d9;
+  --accent-ink: #d2cefd;
+  --accent-line: #9184d9;
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
 }
 
+[data-theme="light"] {
+  --bg: #eceef8;
+  --surface: #fbfcff;
+  --surface-2: #f3f5fe;
+  --ink: #20222c;
+  --ink-2: #494d5e;
+  --ink-3: #6c7082;
+  --border: #d7dbea;
+  --border-soft: rgba(32, 34, 44, 0.12);
+  --accent: #6b5fc7;
+  --accent-ink: #5d5294;
+  --accent-line: #6b5fc7;
+  --shadow: 0 14px 34px rgba(40, 44, 80, 0.14);
+}
+
+/* Expose the tokens to Tailwind so utilities like bg-surface / text-ink-2 /
+   border-accent-line / font-heading resolve to the theme variables. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-line: var(--accent-line);
+
+  --font-heading: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card: var(--shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: background 0.4s, color 0.4s;
+}
+
+a {
+  color: var(--accent-ink);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+/* Visible focus for keyboard users on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Reusable component classes
+   ========================================================================== */
+
+/* Scroll reveal: the Reveal client component toggles .is-visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Desktop nav link with a sweeping underline on hover/focus. */
+.nav-link {
+  position: relative;
+  color: var(--ink-2);
+  font: 500 14px/1 var(--font-heading);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 6px 2px;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: var(--ink);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 1px;
+  background: var(--accent-line);
+  transition: right 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  right: 0;
+}
+
+/* Outlined accent button (primary CTA style). */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid var(--accent-line);
+  color: var(--accent-ink);
+  border-radius: 10px;
+  font: 500 15px/1 var(--font-heading);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-accent:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-ink);
+}
+.btn-accent:active {
+  transform: translateY(1px);
+}
+
+/* Neutral outlined button. */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 10px;
+  font: 500 15px/1 var(--font-heading);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-outline:hover {
+  border-color: var(--ink-3);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+}
+
+/* Pill tag / chip. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font: 500 12px/1 var(--font-heading);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* Card hover-lift used by project cards. */
+.card-lift {
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.card-lift:hover {
+  border-color: var(--accent-line);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* Form field. */
+.field-input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  font: 400 15px/1.4 var(--font-body);
+  padding: 11px 13px;
+}
+.field-input::placeholder {
+  color: var(--ink-3);
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--accent-line);
+}
+.field-input[aria-invalid="true"] {
+  border-color: var(--accent-line);
+}
+
+/* Pulsing availability dot. */
+.pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex: none;
+}
+.pulse-dot::before,
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.pulse-dot::after {
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes drift {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.anim-ring {
+  animation: ring 4s ease-out infinite;
+}
+.anim-drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Reduced motion: honour the user's OS preference.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  body {
+    transition: none;
+  }
 }
