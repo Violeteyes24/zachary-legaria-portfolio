@@ -112,7 +112,7 @@ export const stats: Stat[] = [
 
 export const about = {
   /** Optional portrait image path under /public (e.g. "/portrait.jpg"). */
-  portrait: "",
+  portrait: "/portrait.jpg",
   heading:
     "I like turning fuzzy problems into secure, shippable software.",
   paragraphs: [
@@ -184,6 +184,7 @@ export const projects: Project[] = [
     year: "2026",
     role: "Solo builder",
     result: "Grounded, cited answers over your own documents.",
+    cover: "/projects/doc-qa.png",
     summary:
       "A retrieval-augmented (RAG) assistant that lets users upload documents and ask questions, returning answers grounded in their own content instead of hallucinating.",
     tech: ["Supabase", "pgvector", "OpenAI", "Deno Edge Functions", "Next.js"],
@@ -230,6 +231,7 @@ export const projects: Project[] = [
     year: "2024-25",
     role: "Lead developer",
     result: "Campus mental-health platform, web + mobile.",
+    cover: "/projects/mentalhelp.png",
     summary:
       "A full-stack mental-health platform for Holy Name University, with a web app and companion mobile app for triage, appointments, messaging, and analytics.",
     tech: ["Next.js", "React Native", "PostgreSQL", "Expo", "Vercel"],
@@ -276,6 +278,7 @@ export const projects: Project[] = [
     year: "2025",
     role: "Designer & engineer",
     result: "One private cockpit for tasks, habits, money & mood.",
+    cover: "/projects/command-center.png",
     summary:
       "A self-use life dashboard that unifies tasks, habits, expenses, notes, and mood into a single fast, private interface.",
     tech: ["Next.js 15", "TypeScript", "Tailwind", "Prisma", "Clerk"],
@@ -315,17 +318,18 @@ export const projects: Project[] = [
       "Building for myself sharpened my taste. Every extra click had to justify its own existence.",
   },
   {
-    slug: "cdai",
-    name: "CDAI",
+    slug: "apnea-consultant",
+    name: "Apnea Dynamics Consultant",
     category: "Data · Analytics",
     year: "2026",
     role: "Full-stack developer",
     result: "A single source of truth for lead attribution.",
+    cover: "/projects/apnea-consultant.png",
     summary:
       "A lead-attribution and analytics dashboard for Apnea Dynamics that shows where leads come from and how they convert.",
     tech: ["Next.js", "Vercel", "Node 24.x", "CI/CD"],
     overview:
-      "CDAI gives the team one place to understand lead sources and conversion, replacing scattered spreadsheets with a live dashboard deployed continuously on Vercel.",
+      "Apnea Dynamics Consultant gives the team one place to understand lead sources and conversion, replacing scattered spreadsheets with a live dashboard deployed continuously on Vercel.",
     problem:
       "Marketing effort was hard to attribute. The team lacked a single, trustworthy view of where leads came from and what happened to them.",
     responsibilities: [
@@ -364,6 +368,7 @@ export const projects: Project[] = [
     year: "2026",
     role: "Full-stack developer",
     result: "Community operations, centralized.",
+    cover: "/projects/community-manager.png",
     summary:
       "An internal community-management web app for Apnea Dynamics that centralizes members, content, and engagement in one place.",
     tech: ["Next.js", "Vercel", "CI/CD"],
