@@ -6,6 +6,26 @@
  * project case studies). Components read from here so markup stays declarative.
  */
 
+/**
+ * Absolute site origin, used for metadata, canonical URLs, the sitemap, and
+ * structured data. Resolution order:
+ *   1. NEXT_PUBLIC_SITE_URL  — explicit override (set this for a custom domain
+ *      if you want to pin it).
+ *   2. VERCEL_PROJECT_PRODUCTION_URL — auto-provided by Vercel at build time; it
+ *      tracks the project's production domain (including a custom domain once
+ *      assigned), so production URLs are correct with zero config.
+ *   3. http://localhost:3000 — local dev fallback.
+ */
+function resolveSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
+export const siteUrl = resolveSiteUrl();
+
 export type NavItem = {
   label: string;
   /** In-page anchor, e.g. "/#work"; resolves from any route. */

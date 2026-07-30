@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CaseStudy } from "@/components/case/CaseStudy";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { projectJsonLd } from "@/lib/structured-data";
 import { getAdjacentProjects, getProject, projects } from "@/data/portfolio";
 
 type PageProps = {
@@ -44,5 +46,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
     notFound();
   }
 
-  return <CaseStudy project={project} prev={adjacent.prev} next={adjacent.next} />;
+  return (
+    <>
+      <JsonLd data={projectJsonLd(project)} />
+      <CaseStudy project={project} prev={adjacent.prev} next={adjacent.next} />
+    </>
+  );
 }

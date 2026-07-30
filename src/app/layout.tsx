@@ -5,15 +5,15 @@ import { ThemeScript } from "@/components/theme/ThemeScript";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { profile } from "@/data/portfolio";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteJsonLd } from "@/lib/structured-data";
+import { profile, siteUrl } from "@/data/portfolio";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zachary-legaria.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -77,6 +77,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <ThemeScript />
+        <JsonLd data={siteJsonLd()} />
         <ThemeProvider>
           <Header />
           {children}
