@@ -65,6 +65,8 @@ export const profile = {
   name: "Zachary Legaria",
   fullName: "Zachary Albert Legaria",
   monogram: "ZL",
+  /** Square face crop used for the hero circle and the header/footer logo. */
+  avatar: "/avatar.jpg",
   availability: "Available for remote work",
   location: "Bohol, Philippines",
   timezone: "Asia/Manila",
