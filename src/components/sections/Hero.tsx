@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { PulseDot } from "@/components/ui/PulseDot";
-import { profile, socials, stats } from "@/data/portfolio";
+import { about, profile, socials, stats } from "@/data/portfolio";
 
 export function Hero() {
   return (
@@ -163,7 +164,7 @@ function HeroVisual() {
         style={{ inset: "8%", animationDelay: "2.6s" }}
       />
       <div
-        className="anim-drift relative grid place-items-center rounded-full"
+        className="anim-drift relative grid place-items-center overflow-hidden rounded-full"
         style={{
           width: "58%",
           aspectRatio: "1 / 1",
@@ -172,12 +173,23 @@ function HeroVisual() {
           boxShadow: "var(--shadow)",
         }}
       >
-        <span
-          className="font-heading font-medium text-accent-ink"
-          style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", lineHeight: 1, letterSpacing: "0.04em" }}
-        >
-          {profile.monogram}
-        </span>
+        {about.portrait ? (
+          <Image
+            src={about.portrait}
+            alt=""
+            fill
+            sizes="(max-width: 880px) 55vw, 320px"
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <span
+            className="font-heading font-medium text-accent-ink"
+            style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", lineHeight: 1, letterSpacing: "0.04em" }}
+          >
+            {profile.monogram}
+          </span>
+        )}
       </div>
       <div
         className="absolute bottom-[2%] left-0 font-mono text-[11px] leading-[1.5] text-ink-3"
