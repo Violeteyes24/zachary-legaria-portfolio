@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { PulseDot } from "@/components/ui/PulseDot";
-import { about, profile, socials, stats } from "@/data/portfolio";
+import { profile, socials, stats } from "@/data/portfolio";
 
 export function Hero() {
   return (
@@ -173,9 +173,9 @@ function HeroVisual() {
           boxShadow: "var(--shadow)",
         }}
       >
-        {about.portrait ? (
+        {profile.avatar ? (
           <Image
-            src={about.portrait}
+            src={profile.avatar}
             alt=""
             fill
             sizes="(max-width: 880px) 55vw, 320px"
