@@ -9,7 +9,7 @@ export function Experience() {
       <Container>
         <div className="py-[clamp(64px,9vw,128px)]">
           <Reveal className="mb-[clamp(40px,6vw,72px)]">
-            <SectionHeading index="04" kicker="Experience" title={<>Work that crossed <em className="text-accent-ink">disciplines.</em></>} />
+            <SectionHeading index="02" kicker="Experience" title={<>Work that crossed <em className="text-accent-ink">disciplines.</em></>} />
           </Reveal>
 
           <ol className="m-0 list-none border-t border-border-soft p-0">

@@ -54,7 +54,7 @@ export function CaseStudy({ project, prev, next }: { project: Project; prev: Pro
     <main className="project-shell" data-accent={project.accent}>
       <Container>
         <article className="pb-[clamp(72px,10vw,130px)] pt-[clamp(34px,5vw,64px)]">
-          <Link href="/#work" className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-3 transition-colors hover:text-project">← Selected work</Link>
+          <Link href="/#projects" className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-3 transition-colors hover:text-project">← Selected projects</Link>
 
           <header className="mt-[clamp(34px,6vw,76px)]">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-3">

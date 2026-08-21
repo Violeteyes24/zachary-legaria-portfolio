@@ -31,8 +31,8 @@ export default function NotFound() {
             <Link href="/" className="btn-accent px-6 py-[14px] text-[15px]">
               Back home
             </Link>
-            <Link href="/#work" className="btn-outline px-6 py-[14px] text-[15px]">
-              View work
+            <Link href="/#projects" className="btn-outline px-6 py-[14px] text-[15px]">
+              View projects
             </Link>
           </div>
         </div>
