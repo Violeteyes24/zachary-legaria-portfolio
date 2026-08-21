@@ -4,14 +4,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { projects } from "@/data/portfolio";
 
-export function Work() {
+export function Projects() {
   const [spotlight, second, third, ...compact] = projects;
   return (
-    <section id="work" className="border-b border-border-soft" style={{ scrollMarginTop: "68px" }}>
+    <section id="projects" className="border-b border-border-soft" style={{ scrollMarginTop: "68px" }}>
       <Container>
         <div className="py-[clamp(64px,9vw,128px)]">
           <Reveal className="mb-[clamp(40px,6vw,72px)]">
-            <SectionHeading index="02" kicker="Selected work" title={<>Built for the <em className="text-accent-ink">real world.</em></>} meta={`${projects.length} documented projects`} />
+            <SectionHeading index="04" kicker="Selected projects" title={<>Built for the <em className="text-accent-ink">real world.</em></>} meta={`${projects.length} documented projects`} />
           </Reveal>
           <Reveal delay={60}><ProjectCard project={spotlight} variant="spotlight" index={1} /></Reveal>
           <Reveal delay={80}><ProjectCard project={second} variant="feature" index={2} /></Reveal>

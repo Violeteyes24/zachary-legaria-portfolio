@@ -41,7 +41,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal eager delay={210} className="mt-8 flex flex-wrap gap-3">
-              <Button href="/#work" variant="accent">Explore selected work →</Button>
+              <Button href="/#projects" variant="accent">Explore selected projects →</Button>
               <Button href={profile.resumeHref} variant="outline">View résumé ↗</Button>
               <Button href="/#contact" variant="outline">Start a conversation</Button>
             </Reveal>

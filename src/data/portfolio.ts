@@ -28,7 +28,7 @@ export const siteUrl = resolveSiteUrl();
 
 export type NavItem = {
   label: string;
-  /** In-page anchor, e.g. "/#work"; resolves from any route. */
+  /** In-page anchor, e.g. "/#projects"; resolves from any route. */
   href: string;
 };
 
@@ -112,9 +112,9 @@ export const profile = {
 } as const;
 
 export const navItems: NavItem[] = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#projects" },
   { label: "Contact", href: "/#contact" },
 ];
 
