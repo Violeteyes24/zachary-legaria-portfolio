@@ -19,6 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProject(slug);
   if (!project) return {};
 
+  const socialImage = `/work/${project.slug}/opengraph-image`;
+
   return {
     title: project.name,
     description: project.summary,
@@ -28,11 +30,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${project.name} Case Study`,
       description: project.summary,
       url: `/work/${project.slug}`,
+      images: [{ url: socialImage, alt: `${project.name} case study` }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.name} Case Study`,
       description: project.summary,
+      images: [socialImage],
     },
   };
 }

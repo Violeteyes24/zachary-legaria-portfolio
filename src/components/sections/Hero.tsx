@@ -7,197 +7,99 @@ import { profile, socials, stats } from "@/data/portfolio";
 
 export function Hero() {
   return (
-    <section id="top" style={{ scrollMarginTop: "80px" }}>
+    <section id="top" className="border-b border-border-soft" style={{ scrollMarginTop: "80px" }}>
       <Container>
-        <div
-          style={{
-            padding:
-              "clamp(48px, 9vw, 110px) 0 clamp(40px, 6vw, 80px)",
-          }}
-        >
-          <div className="grid grid-cols-1 items-center gap-[clamp(32px,5vw,64px)] min-[881px]:grid-cols-[1.25fr_0.9fr]">
-            {/* Text column */}
-            <div>
-              <Reveal className="mb-[26px] inline-flex items-center gap-2.5 rounded-full border border-border px-[13px] py-[7px]">
+        <div className="grid min-h-[calc(100svh-68px)] grid-cols-1 items-center gap-10 py-[clamp(44px,7vw,86px)] min-[881px]:grid-cols-[1.24fr_0.76fr]">
+          <div className="relative z-10">
+            <Reveal eager className="mb-7 flex flex-col items-start gap-3 min-[520px]:flex-row min-[520px]:flex-wrap min-[520px]:items-center min-[520px]:gap-x-4 min-[520px]:gap-y-2">
+              <span className="section-index">01 / INTRODUCTION</span>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-border-soft bg-bg/70 px-3 py-2">
                 <PulseDot />
-                <span className="font-heading text-[12.5px] font-medium tracking-[0.02em] text-ink-2">
+                <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.09em] text-ink-2">
                   {profile.availability}
                 </span>
-              </Reveal>
+              </span>
+            </Reveal>
 
-              <Reveal>
-                <h1
-                  className="font-heading font-medium text-ink"
-                  style={{
-                    margin: 0,
-                    fontSize: "clamp(2.9rem, 7vw, 5.6rem)",
-                    lineHeight: 0.98,
-                    letterSpacing: "-0.03em",
-                    textWrap: "balance",
-                  }}
-                >
-                  {profile.headline.map((part, i) => (
-                    <span
-                      key={i}
-                      style={part.accent ? { color: "var(--accent-ink)" } : undefined}
-                    >
-                      {part.text}
-                    </span>
-                  ))}
-                </h1>
-              </Reveal>
-
-              <Reveal>
-                <p
-                  className="text-ink-2"
-                  style={{
-                    margin: "26px 0 0",
-                    maxWidth: "46ch",
-                    fontSize: "clamp(1rem, 1.5vw, 1.18rem)",
-                    lineHeight: 1.6,
-                    textWrap: "pretty",
-                  }}
-                >
-                  {profile.tagline}
-                </p>
-              </Reveal>
-
-              <Reveal>
-                <p
-                  className="text-ink-3"
-                  style={{
-                    margin: "16px 0 0",
-                    maxWidth: "52ch",
-                    fontSize: "15px",
-                    lineHeight: 1.65,
-                  }}
-                >
-                  {profile.heroSubtext}
-                </p>
-              </Reveal>
-
-              <Reveal className="mt-[34px] flex flex-wrap gap-3.5">
-                <Button href="/#work" variant="accent">
-                  View selected work →
-                </Button>
-                <Button href="/#contact" variant="outline">
-                  Contact me
-                </Button>
-              </Reveal>
-
-              <Reveal className="mt-[34px] flex items-center gap-5">
-                {socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-heading text-[13.5px] font-medium text-ink-3 transition-colors hover:text-accent-ink"
-                  >
-                    {s.label} ↗
-                  </a>
+            <Reveal eager delay={70}>
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
+                {profile.fullName} / Full-stack &amp; AI engineer
+              </p>
+              <h1 className="m-0 max-w-[13ch] font-editorial text-[clamp(3.35rem,7.5vw,7.25rem)] font-normal leading-[0.88] tracking-[-0.05em] text-ink">
+                {profile.headline.map((part, index) => (
+                  <span key={index} className={part.accent ? "italic text-accent-ink" : undefined}>
+                    {part.text}
+                  </span>
                 ))}
-              </Reveal>
-            </div>
+              </h1>
+            </Reveal>
 
-            {/* Animated orb visual */}
-            <Reveal className="order-first min-[881px]:order-none">
-              <HeroVisual />
+            <Reveal eager delay={140}>
+              <p className="mt-7 max-w-[58ch] text-[clamp(1rem,1.45vw,1.15rem)] leading-[1.7] text-ink-2">
+                {profile.tagline}
+              </p>
+            </Reveal>
+
+            <Reveal eager delay={210} className="mt-8 flex flex-wrap gap-3">
+              <Button href="/#work" variant="accent">Explore selected work →</Button>
+              <Button href={profile.resumeHref} variant="outline">View résumé ↗</Button>
+              <Button href="/#contact" variant="outline">Start a conversation</Button>
+            </Reveal>
+
+            <Reveal eager delay={260} className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-3 transition-colors hover:text-accent-ink"
+                >
+                  {social.label} ↗
+                </a>
+              ))}
             </Reveal>
           </div>
 
-          {/* Stats */}
-          <Reveal
-            className="mt-[clamp(48px,7vw,90px)] grid gap-px overflow-hidden rounded-[14px] border border-border-soft bg-border-soft"
-            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))" }}
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="bg-bg px-5 py-[22px]">
-                <div
-                  className="font-heading font-medium text-ink"
-                  style={{
-                    fontSize: "clamp(1.7rem, 3vw, 2.3rem)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {stat.value}
-                </div>
-                <div className="mt-[7px] text-[12.5px] leading-[1.4] text-ink-3">
-                  {stat.label}
+          <Reveal eager delay={120}>
+            <figure className="relative mx-auto w-full max-w-[430px] min-[881px]:ml-auto">
+              <div className="absolute -inset-4 border border-border-soft" aria-hidden />
+              <div className="relative aspect-[3/4] overflow-hidden bg-surface shadow-card">
+                <Image
+                  src="/portrait-hero.jpg"
+                  alt={`Portrait of ${profile.fullName}`}
+                  fill
+                  sizes="(max-width: 880px) 88vw, 430px"
+                  className="object-cover object-[center_34%] saturate-[0.82]"
+                  priority
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0b0d12]/85 to-transparent px-5 pb-5 pt-24 text-[#f4f1e9]">
+                  <p className="m-0 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">Currently</p>
+                  <p className="mt-2 text-[13px] leading-[1.5]">AI Engineer at Apnea Dynamics<br />Full-Stack Lead at MedSync</p>
                 </div>
               </div>
-            ))}
+              <figcaption className="mt-4 flex justify-between font-mono text-[10px] uppercase tracking-[0.09em] text-ink-3">
+                <span>{profile.location}</span>
+                <span>UTC +08:00</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          <Reveal eager delay={280} className="col-span-full mt-2 border-y border-border-soft">
+            <div className="grid grid-cols-2 min-[721px]:grid-cols-4">
+              {stats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`px-4 py-5 min-[721px]:px-6 ${index % 2 ? "border-l border-border-soft" : ""} ${index > 1 ? "border-t border-border-soft min-[721px]:border-t-0" : ""} ${index === 2 ? "min-[721px]:border-l" : ""}`}
+                >
+                  <div className="font-editorial text-[clamp(1.8rem,3vw,2.7rem)] leading-none text-ink">{stat.value}</div>
+                  <div className="mt-2 max-w-[18ch] font-mono text-[10px] uppercase leading-[1.5] tracking-[0.07em] text-ink-3">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </Reveal>
         </div>
       </Container>
     </section>
-  );
-}
-
-/** Decorative animated ring / orb figure from the hero. */
-function HeroVisual() {
-  return (
-    <div
-      aria-hidden
-      className="relative grid place-items-center"
-      style={{ aspectRatio: "1 / 1" }}
-    >
-      <span
-        className="absolute rounded-full border"
-        style={{ inset: "8%", borderColor: "var(--border-soft)" }}
-      />
-      <span
-        className="absolute rounded-full border"
-        style={{ inset: "22%", borderColor: "var(--border-soft)" }}
-      />
-      <span
-        className="anim-ring absolute rounded-full border border-accent-line"
-        style={{ inset: "8%" }}
-      />
-      <span
-        className="anim-ring absolute rounded-full border border-accent-line"
-        style={{ inset: "8%", animationDelay: "1.3s" }}
-      />
-      <span
-        className="anim-ring absolute rounded-full border border-accent-line"
-        style={{ inset: "8%", animationDelay: "2.6s" }}
-      />
-      <div
-        className="anim-drift relative grid place-items-center overflow-hidden rounded-full"
-        style={{
-          width: "58%",
-          aspectRatio: "1 / 1",
-          background:
-            "radial-gradient(circle at 35% 30%, var(--surface-2), var(--surface))",
-          boxShadow: "var(--shadow)",
-        }}
-      >
-        {profile.avatar ? (
-          <Image
-            src={profile.avatar}
-            alt=""
-            fill
-            sizes="(max-width: 880px) 55vw, 320px"
-            className="object-cover"
-            priority
-          />
-        ) : (
-          <span
-            className="font-heading font-medium text-accent-ink"
-            style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", lineHeight: 1, letterSpacing: "0.04em" }}
-          >
-            {profile.monogram}
-          </span>
-        )}
-      </div>
-      <div
-        className="absolute bottom-[2%] left-0 font-mono text-[11px] leading-[1.5] text-ink-3"
-      >
-        lat {profile.coordinates.lat} · lon {profile.coordinates.lon}
-        <br />
-        status: online
-      </div>
-    </div>
   );
 }

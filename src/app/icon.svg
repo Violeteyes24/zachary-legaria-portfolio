@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#161826"/>
-  <rect x="5" y="5" width="54" height="54" rx="11" fill="none" stroke="#9184d9" stroke-width="2"/>
-  <text x="32" y="42" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="27" font-weight="600" letter-spacing="0.5" fill="#d2cefd" text-anchor="middle">ZL</text>
+  <rect width="64" height="64" fill="#0b0d12"/>
+  <rect x="5" y="5" width="54" height="54" fill="none" stroke="#9580ff" stroke-width="2"/>
+  <text x="32" y="41" font-family="Georgia, Times New Roman, serif" font-size="26" font-style="italic" letter-spacing="-1" fill="#f4f1e9" text-anchor="middle">ZL</text>
 </svg>

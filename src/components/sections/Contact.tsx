@@ -1,77 +1,44 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Kicker } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
 import { PulseDot } from "@/components/ui/PulseDot";
 import { LiveClock } from "@/components/ui/LiveClock";
-import { ContactForm } from "./ContactForm";
 import { buildMailto, profile, socials } from "@/data/portfolio";
 
 export function Contact() {
+  const linkedIn = socials.find((social) => social.label === "LinkedIn");
   return (
-    <section id="contact" className="border-t border-border-soft" style={{ scrollMarginTop: "68px" }}>
+    <section id="contact" style={{ scrollMarginTop: "68px" }}>
       <Container>
-        <div
-          className="grid grid-cols-1 gap-[clamp(36px,5vw,72px)] min-[881px]:grid-cols-2"
-          style={{ padding: "clamp(48px, 7vw, 100px) 0" }}
-        >
-          {/* Info column */}
+        <div className="py-[clamp(64px,9vw,128px)]">
           <Reveal>
-            <div className="mb-4">
-              <Kicker>Contact</Kicker>
-            </div>
-            <h2
-              className="font-heading font-medium text-ink"
-              style={{
-                margin: 0,
-                fontSize: "clamp(2rem, 4vw, 3.1rem)",
-                lineHeight: 1.04,
-                letterSpacing: "-0.025em",
-                textWrap: "balance",
-              }}
-            >
-              Let&apos;s build something worth shipping.
-            </h2>
-            <p className="mt-5 max-w-[44ch] text-[15.5px] leading-[1.7] text-ink-2">
-              Open to remote roles and collaborations. Tell me about the problem you&apos;re
-              solving, and I usually reply within a day.
-            </p>
-
-            <div className="mt-[30px] flex flex-col gap-3.5">
-              <a
-                href={buildMailto()}
-                className="inline-flex items-center gap-2.5 font-heading text-[16px] font-medium leading-[1.3] text-ink transition-colors hover:text-accent-ink"
-              >
-                <span aria-hidden className="text-accent-ink">
-                  ✦
-                </span>
-                {profile.email}
-              </a>
-              <div className="mt-1 flex flex-wrap gap-[18px]">
-                {socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-heading text-[14px] font-medium text-ink-3 transition-colors hover:text-accent-ink"
-                  >
-                    {s.label} ↗
-                  </a>
-                ))}
+            <div className="relative overflow-hidden border border-border bg-surface px-[clamp(24px,6vw,76px)] py-[clamp(38px,7vw,82px)]">
+              <span aria-hidden className="absolute -right-10 -top-16 font-editorial text-[clamp(10rem,24vw,23rem)] italic leading-none text-accent opacity-[0.07]">ZL</span>
+              <div className="relative z-10 grid gap-12 min-[881px]:grid-cols-[1.35fr_0.65fr] min-[881px]:items-end">
+                <div>
+                  <Kicker index="05">Contact</Kicker>
+                  <h2 className="m-0 max-w-[12ch] font-editorial text-[clamp(3rem,7vw,6.8rem)] font-normal leading-[0.9] tracking-[-0.045em] text-ink">Let&apos;s build something <em className="text-accent-ink">worth shipping.</em></h2>
+                  <p className="mt-6 max-w-[52ch] text-[15px] leading-[1.75] text-ink-2">Open to remote engineering roles and thoughtful collaborations. Share the problem you are solving and I usually reply within one working day.</p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button href={buildMailto()} variant="accent">Email me →</Button>
+                    {linkedIn ? <Button href={linkedIn.href} variant="outline">LinkedIn ↗</Button> : null}
+                    <Button href={profile.resumeHref} variant="outline">Résumé ↗</Button>
+                  </div>
+                </div>
+                <div className="border-t border-border-soft pt-6 min-[881px]:border-l min-[881px]:border-t-0 min-[881px]:pl-8 min-[881px]:pt-0">
+                  <div className="inline-flex items-center gap-2.5">
+                    <PulseDot />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.09em] text-ink-2">{profile.availability}</span>
+                  </div>
+                  <dl className="mt-7 grid gap-5">
+                    <div><dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-3">Local time</dt><dd className="m-0 mt-1.5 font-editorial text-[1.35rem] text-ink"><LiveClock /></dd></div>
+                    <div><dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-3">Location</dt><dd className="m-0 mt-1.5 font-editorial text-[1.35rem] text-ink">{profile.location}</dd></div>
+                    <div><dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-3">Email</dt><dd className="m-0 mt-1.5 break-all text-[12px] text-ink-2">{profile.email}</dd></div>
+                  </dl>
+                </div>
               </div>
             </div>
-
-            <div className="mt-7 inline-flex items-center gap-2.5 rounded-full border border-border px-3.5 py-2">
-              <PulseDot />
-              <span className="font-heading text-[12.5px] font-medium text-ink-2">
-                {profile.availability} · <LiveClock />
-              </span>
-            </div>
-          </Reveal>
-
-          {/* Form column */}
-          <Reveal>
-            <ContactForm />
           </Reveal>
         </div>
       </Container>

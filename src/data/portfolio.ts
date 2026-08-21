@@ -63,6 +63,8 @@ export type Project = {
   category: string;
   year: string;
   role: string;
+  /** Per-project editorial accent used across cards and case studies. */
+  accent: "violet" | "mint" | "amber" | "blue" | "rose";
   /** Short one-liner shown on cards. */
   result: string;
   /** Optional cover / hero image path under /public (e.g. "/projects/doc-qa.png"). */
@@ -95,10 +97,10 @@ export const profile = {
   resumeHref: "/resume.pdf",
   /** Hero headline split so accent phrases can be highlighted. */
   headline: [
-    { text: "Software engineer building " },
+    { text: "I build reliable software at the intersection of " },
     { text: "full-stack products", accent: true },
-    { text: " & " },
-    { text: "AI systems", accent: true },
+    { text: " and " },
+    { text: "applied AI", accent: true },
     { text: "." },
   ] as { text: string; accent?: boolean }[],
   tagline:
@@ -205,6 +207,7 @@ export const projects: Project[] = [
     category: "AI Engineering",
     year: "2026",
     role: "Solo builder",
+    accent: "violet",
     result: "Grounded, cited answers over your own documents.",
     cover: "/projects/doc-qa.png",
     summary:
@@ -252,6 +255,7 @@ export const projects: Project[] = [
     category: "Full-Stack · Capstone",
     year: "2024-25",
     role: "Lead developer",
+    accent: "mint",
     result: "Campus mental-health platform, web + mobile.",
     cover: "/projects/mentalhelp.png",
     summary:
@@ -299,6 +303,7 @@ export const projects: Project[] = [
     category: "Product · Personal",
     year: "2025",
     role: "Designer & engineer",
+    accent: "amber",
     result: "One private cockpit for tasks, habits, money & mood.",
     cover: "/projects/command-center.png",
     summary:
@@ -345,6 +350,7 @@ export const projects: Project[] = [
     category: "Data · Analytics",
     year: "2026",
     role: "Full-stack developer",
+    accent: "blue",
     result: "A single source of truth for lead attribution.",
     cover: "/projects/apnea-consultant.png",
     summary:
@@ -389,6 +395,7 @@ export const projects: Project[] = [
     category: "Internal Tools",
     year: "2026",
     role: "Full-stack developer",
+    accent: "rose",
     result: "Community operations, centralized.",
     cover: "/projects/community-manager.png",
     summary:

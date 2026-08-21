@@ -2,51 +2,25 @@ import { profile, socials } from "@/data/portfolio";
 import { Container } from "@/components/ui/Container";
 import { Brand } from "./Brand";
 import { BackToTop } from "@/components/ui/BackToTop";
-import { LiveClock } from "@/components/ui/LiveClock";
 
 export function Footer() {
   const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-border-soft">
+    <footer className="border-t border-border-soft bg-surface/60">
       <Container>
-        <div style={{ padding: "clamp(40px, 5vw, 64px) 0" }}>
-          <div className="grid grid-cols-1 items-start gap-8 min-[881px]:grid-cols-[1.4fr_1fr]">
-            <div>
-              <Brand size="md" />
-              <p className="mt-4 max-w-[38ch] text-[14px] leading-[1.6] text-ink-3">
-                {profile.footerBlurb}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-heading text-[14px] font-medium text-ink-2 transition-colors hover:text-accent-ink"
-                >
-                  {s.label} ↗
-                </a>
-              ))}
-              <a
-                href={profile.resumeHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-heading text-[14px] font-medium text-ink-2 transition-colors hover:text-accent-ink"
-              >
-                Résumé ↗
-              </a>
-            </div>
+        <div className="grid gap-10 py-10 min-[721px]:grid-cols-[1fr_auto] min-[721px]:items-end">
+          <div>
+            <Brand size="md" />
+            <p className="mt-5 max-w-[44ch] text-[13px] leading-[1.65] text-ink-3">{profile.footerBlurb}</p>
           </div>
-
-          <div className="mt-9 flex flex-wrap items-center justify-between gap-4 border-t border-border-soft pt-[22px]">
-            <span className="text-[12.5px] text-ink-3">
-              © {year} {profile.fullName} · {profile.location} · <LiveClock />
-            </span>
-            <BackToTop />
+          <div className="flex flex-wrap gap-x-5 gap-y-3 min-[721px]:justify-end">
+            {socials.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:text-accent-ink">{social.label} ↗</a>)}
+            <a href={profile.resumeHref} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:text-accent-ink">Résumé ↗</a>
           </div>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border-soft py-5">
+          <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-ink-3">© {year} {profile.fullName} · {profile.location}</span>
+          <BackToTop />
         </div>
       </Container>
     </footer>
