@@ -1,35 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/data/portfolio";
 
-/** The avatar (or "ZL" monogram) + name lockup, linking home. */
 export function Brand({ size = "sm" }: { size?: "sm" | "md" }) {
-  const nameSize = size === "md" ? "text-[16px]" : "text-[15px]";
-  const label = size === "md" ? profile.fullName : profile.name;
-
   return (
-    <Link
-      href="/"
-      className="flex items-center gap-2.5"
-      aria-label={`${profile.fullName}, home`}
-    >
-      {profile.avatar ? (
-        <span
-          aria-hidden
-          className="relative block h-[34px] w-[34px] overflow-hidden rounded-[9px] border border-accent-line"
-        >
-          <Image src={profile.avatar} alt="" fill sizes="34px" className="object-cover" />
-        </span>
-      ) : (
-        <span
-          aria-hidden
-          className="grid h-[34px] w-[34px] place-items-center rounded-[9px] border border-accent-line font-heading text-[14px] font-semibold tracking-[0.02em] text-accent-ink"
-        >
-          {profile.monogram}
-        </span>
-      )}
-      <span className={`font-heading ${nameSize} font-medium tracking-[-0.01em] text-ink`}>
-        {label}
+    <Link href="/" className="group inline-flex items-center gap-3" aria-label={`${profile.fullName}, home`}>
+      <span aria-hidden className={`${size === "md" ? "h-11 w-11 text-[14px]" : "h-8 w-8 text-[11px]"} grid place-items-center border border-accent-line font-heading font-bold tracking-[0.08em] text-accent-ink transition-colors group-hover:bg-accent group-hover:text-[#0b0d12]`}>
+        {profile.monogram}
+      </span>
+      <span className="flex flex-col">
+        <span className={`${size === "md" ? "text-[15px]" : "text-[12px]"} font-heading font-semibold uppercase tracking-[0.08em] text-ink`}>{profile.name}</span>
+        <span className="mt-1 hidden font-mono text-[8px] uppercase tracking-[0.11em] text-ink-3 min-[520px]:block">Full-stack + applied AI</span>
       </span>
     </Link>
   );
