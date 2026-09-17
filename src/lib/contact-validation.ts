@@ -14,6 +14,25 @@ export type ContactFields = {
 
 export type FieldErrors = Partial<Record<keyof ContactFields, string>>;
 
+/**
+ * Result of a submission, shared between the Server Action and the form.
+ *
+ * Reason: this lives here, not in `contact-action.ts`, because a `"use server"`
+ * module may only export async functions. Exporting the object below from there
+ * throws "A 'use server' file can only export async functions, found object" at
+ * runtime — and it does NOT fail `npm run build`, so do not move it back.
+ */
+export type ContactState = {
+  /** Form-level message, shown beside the submit button. */
+  status: "idle" | "success" | "error";
+  message?: string;
+  errors?: FieldErrors;
+  /** Echoed back on failure so the visitor never retypes their message. */
+  values?: Partial<ContactFields>;
+};
+
+export const initialContactState: ContactState = { status: "idle" };
+
 export const LIMITS = {
   nameMin: 2,
   nameMax: 100,

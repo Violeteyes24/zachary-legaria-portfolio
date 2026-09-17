@@ -4,19 +4,12 @@ import { profile } from "@/data/portfolio";
 import {
   validateContact,
   type ContactFields,
-  type FieldErrors,
+  type ContactState,
 } from "@/lib/contact-validation";
 
-export type ContactState = {
-  status: "idle" | "success" | "error";
-  /** Form-level message, shown above the submit button. */
-  message?: string;
-  errors?: FieldErrors;
-  /** Echoed back on failure so the visitor never retypes their message. */
-  values?: Partial<ContactFields>;
-};
-
-export const initialContactState: ContactState = { status: "idle" };
+// NOTE: this module may export NOTHING but async functions. `ContactState` and
+// `initialContactState` therefore live in `contact-validation.ts`. Adding a
+// non-function export here throws at runtime and still passes `npm run build`.
 
 /** A form filled faster than this was not filled by a person. */
 const MIN_ELAPSED_MS = 2000;

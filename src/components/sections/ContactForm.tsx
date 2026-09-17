@@ -1,11 +1,8 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import {
-  initialContactState,
-  sendContactMessage,
-} from "@/lib/contact-action";
-import { LIMITS } from "@/lib/contact-validation";
+import { sendContactMessage } from "@/lib/contact-action";
+import { initialContactState, LIMITS } from "@/lib/contact-validation";
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(
