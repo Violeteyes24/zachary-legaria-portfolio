@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code
+# The rest of .claude/ (agents, commands, PROJECT.md, TODO.md) is committed on purpose.
+.claude/settings.local.json
