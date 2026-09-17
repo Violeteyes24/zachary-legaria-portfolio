@@ -20,10 +20,27 @@ Experience, and Contact.
 
 ```bash
 npm install
+cp .env.example .env.local   # then add your Resend key (see below)
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+### Contact form email (`RESEND_API_KEY`)
+
+The contact form sends mail through [Resend](https://resend.com). Create a free
+account, generate an API key, and put it in `.env.local`:
+
+```bash
+RESEND_API_KEY=re_your_key_here
+```
+
+Resend's shared sender (`onboarding@resend.dev`) delivers to the account owner's
+own address without any domain verification, which is all this form needs — no
+domain purchase or DNS setup required.
+
+Without the key the site still builds and runs; the form just reports that email
+is unconfigured and points visitors at the mailto fallback.
 
 Other scripts:
 
@@ -87,6 +104,9 @@ Edit that file to update the site; components render from it.
 ## Deployment (Vercel)
 
 This app is ready to deploy on Vercel with zero configuration.
+
+Set `RESEND_API_KEY` in the Vercel project's environment variables, or the
+contact form will not send in production.
 
 Optionally set `NEXT_PUBLIC_SITE_URL` to your production URL so canonical and
 Open Graph URLs are absolute:

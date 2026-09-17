@@ -17,6 +17,7 @@ Personal portfolio site for Zachary Albert Legaria — full-stack and AI enginee
 - **Fonts**: `next/font/google` — Inter (sans) + Newsreader (serif), exposed as CSS variables
 - **State Management**: none — React Context only, for theming (`ThemeProvider`)
 - **Data Fetching**: none — all content is static, imported from `src/data/portfolio.ts`
+- **Email**: Resend, used only by the contact form Server Action
 - **Testing**: **none installed** (see Gotchas)
 - **Linting**: ESLint 9 flat config (`eslint.config.mjs`) + `eslint-config-next`
 - **Package Manager**: npm
@@ -39,7 +40,7 @@ src/
 │       └── opengraph-image.tsx
 ├── components/
 │   ├── layout/               # Header, Footer, Brand
-│   ├── sections/             # Hero, About, Experience, Projects, Contact
+│   ├── sections/             # Hero, About, Experience, Projects, Contact, ContactForm
 │   ├── ui/                   # Button, Container, Tag, Reveal, CoverImage, …
 │   ├── case/                 # CaseStudy
 │   ├── seo/                  # JsonLd
@@ -47,7 +48,9 @@ src/
 ├── data/
 │   └── portfolio.ts          # ALL site content + types (single source of truth)
 └── lib/
-    └── structured-data.ts    # JSON-LD builders
+    ├── structured-data.ts    # JSON-LD builders
+    ├── contact-action.ts     # 'use server' — validates + sends via Resend
+    └── contact-validation.ts # pure, dependency-free validators
 ```
 
 ## Conventions
@@ -90,13 +93,15 @@ There is **no `npm test`**. Verification = `npm run lint` + `npm run build`.
 
 ## Architecture Decisions
 
-**Data flow**: static content module → Server Components → HTML. No API routes, no database, no client-side fetching. Keep it that way unless a feature genuinely needs it.
+**Data flow**: static content module → Server Components → HTML. No database, no client-side data fetching, and no API routes — the one piece of server-side code is the contact form's Server Action (`src/lib/contact-action.ts`). Keep it that way unless a feature genuinely needs more.
+
+**Contact form**: a Server Action validates server-side and sends via Resend (`RESEND_API_KEY`). Note that Server Actions are reachable by direct POST, not only through the form, so every check in that action must assume hostile input. Adding the action did **not** opt `/` out of static generation — it is still prerendered, and that must stay true. Verify in `npm run build` output after touching it.
 
 **Theming**: `ThemeScript` runs before paint to avoid a flash of wrong theme; `ThemeProvider` holds the state; `ThemeToggle` flips it. Theme colors are CSS custom properties in `globals.css`.
 
 **Performance**: fully static, `next/font` with `display: swap`, `next/image` for any raster asset. There is no runtime data dependency to slow down — protect that.
 
-**Security**: no secrets, no auth, no user input beyond outbound contact links. The main risk surface is accidentally committing a secret or introducing a dependency that ships client-side tracking.
+**Security**: no auth, no database. `RESEND_API_KEY` is the only secret — server-side only, never `NEXT_PUBLIC_`. The contact form is the only user input, and its Server Action is a public POST endpoint, so validation and spam checks live there rather than on the client. Remaining risk surface: committing a secret, or adding a dependency that ships client-side tracking.
 
 ## Gotchas and Tips
 
