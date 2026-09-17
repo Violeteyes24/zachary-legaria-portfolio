@@ -136,6 +136,36 @@ a { color: inherit; text-decoration: none; }
 .btn-outline { border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 70%, transparent); color: var(--ink); }
 .btn-outline:hover { border-color: var(--ink-3); transform: translateY(-2px); }
 
+.field-label {
+  font: 600 9px/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  padding: 12px 14px;
+  color: var(--ink);
+  font: 400 15px/1.6 var(--font-body);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.field-input::placeholder { color: var(--ink-3); }
+.field-input:hover { border-color: var(--ink-3); }
+.field-input:focus { border-color: var(--accent); }
+.field-input[aria-invalid="true"] { border-color: var(--accent-ink); }
+
+textarea.field-input { resize: vertical; min-height: 132px; }
+
+.field-error {
+  margin: 0;
+  color: var(--accent-ink);
+  font: 400 12px/1.5 var(--font-body);
+}
+
 .chip {
   display: inline-flex;
   align-items: center;

@@ -4,6 +4,7 @@ import { Kicker } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PulseDot } from "@/components/ui/PulseDot";
 import { LiveClock } from "@/components/ui/LiveClock";
+import { ContactForm } from "@/components/sections/ContactForm";
 import { buildMailto, profile, socials } from "@/data/portfolio";
 
 export function Contact() {
@@ -20,10 +21,14 @@ export function Contact() {
                   <Kicker index="05">Contact</Kicker>
                   <h2 className="m-0 max-w-[12ch] font-editorial text-[clamp(3rem,7vw,6.8rem)] font-normal leading-[0.9] tracking-[-0.045em] text-ink">Let&apos;s build something <em className="text-accent-ink">worth shipping.</em></h2>
                   <p className="mt-6 max-w-[52ch] text-[15px] leading-[1.75] text-ink-2">Open to remote engineering roles and thoughtful collaborations. Share the problem you are solving and I usually reply within one working day.</p>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href={buildMailto()} variant="accent">Email me →</Button>
-                    {linkedIn ? <Button href={linkedIn.href} variant="outline">LinkedIn ↗</Button> : null}
-                    <Button href={profile.resumeHref} variant="outline">Résumé ↗</Button>
+                  <ContactForm />
+                  <div className="mt-9 border-t border-border-soft pt-7">
+                    <p className="m-0 font-mono text-[9px] uppercase tracking-[0.12em] text-ink-3">Or reach me directly</p>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <Button href={buildMailto()} variant="outline">Email me ↗</Button>
+                      {linkedIn ? <Button href={linkedIn.href} variant="outline">LinkedIn ↗</Button> : null}
+                      <Button href={profile.resumeHref} variant="outline">Résumé ↗</Button>
+                    </div>
                   </div>
                 </div>
                 <div className="border-t border-border-soft pt-6 min-[881px]:border-l min-[881px]:border-t-0 min-[881px]:pl-8 min-[881px]:pt-0">
